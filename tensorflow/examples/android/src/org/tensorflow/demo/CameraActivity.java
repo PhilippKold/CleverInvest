@@ -20,7 +20,9 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
@@ -37,7 +39,9 @@ import android.os.HandlerThread;
 import android.os.Trace;
 import android.util.Size;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.Toast;
 import java.nio.ByteBuffer;
 import org.tensorflow.demo.env.ImageUtils;
@@ -62,6 +66,7 @@ public abstract class CameraActivity extends Activity
   private byte[][] yuvBytes = new byte[3][];
   private int[] rgbBytes = null;
   private int yRowStride;
+  private String lastDetection = "no_detection";
 
   protected int previewWidth = 0;
   protected int previewHeight = 0;
@@ -69,13 +74,33 @@ public abstract class CameraActivity extends Activity
   private Runnable postInferenceCallback;
   private Runnable imageConverter;
 
+  public void setDetection(String detection){
+    this.lastDetection = detection;
+  }
+
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     LOGGER.d("onCreate " + this);
     super.onCreate(null);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+
+
     setContentView(R.layout.activity_camera);
+
+    Button theButton = (Button) findViewById(R.id.button);
+    theButton.setVisibility(View.VISIBLE);
+    theButton.setBackgroundColor(Color.TRANSPARENT);
+
+    theButton.setOnClickListener(new View.OnClickListener()
+    {
+      @Override
+      public void onClick(View v)
+      {
+        String message = lastDetection;
+        Toast.makeText(getApplication(), message, Toast.LENGTH_LONG).show();
+      }
+    });
 
     if (hasPermission()) {
       setFragment();

@@ -16,6 +16,8 @@ limitations under the License.
 package org.tensorflow.demo.tracking;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -28,11 +30,16 @@ import android.text.TextUtils;
 import android.util.Pair;
 import android.util.TypedValue;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import org.tensorflow.demo.Classifier.Recognition;
+import org.tensorflow.demo.R;
 import org.tensorflow.demo.env.BorderedText;
+import org.tensorflow.demo.env.ImageButtonCanvas;
 import org.tensorflow.demo.env.ImageUtils;
 import org.tensorflow.demo.env.Logger;
 
@@ -41,6 +48,8 @@ import org.tensorflow.demo.env.Logger;
  * objects to new detections.
  */
 public class MultiBoxTracker {
+
+  private Paint paint = new Paint();
   private final Logger logger = new Logger();
 
   private static final float TEXT_SIZE_DIP = 18;
@@ -85,6 +94,7 @@ public class MultiBoxTracker {
 
   private final float textSizePx;
   private final BorderedText borderedText;
+  private final ImageButtonCanvas imageButtonCanvas;
 
   private Matrix frameToCanvasMatrix;
 
@@ -95,6 +105,8 @@ public class MultiBoxTracker {
   private Context context;
 
   public MultiBoxTracker(final Context context) {
+    paint.setColor(Color.CYAN);
+    paint.setStrokeWidth(3);
     this.context = context;
     for (final int color : COLORS) {
       availableColors.add(color);
@@ -111,6 +123,7 @@ public class MultiBoxTracker {
         TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP, TEXT_SIZE_DIP, context.getResources().getDisplayMetrics());
     borderedText = new BorderedText(textSizePx);
+    imageButtonCanvas = new ImageButtonCanvas(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher));
   }
 
   private Matrix getFrameToCanvasMatrix() {
@@ -145,7 +158,7 @@ public class MultiBoxTracker {
       final RectF trackedPos = trackedObject.getTrackedPositionInPreviewFrame();
 
       if (getFrameToCanvasMatrix().mapRect(trackedPos)) {
-        final String labelString = String.format("%.2f", trackedObject.getCurrentCorrelation());
+        final String labelString = "HALLO"+ String.format("%.2f", trackedObject.getCurrentCorrelation());
         borderedText.drawText(canvas, trackedPos.right, trackedPos.bottom, labelString);
       }
     }
@@ -160,7 +173,7 @@ public class MultiBoxTracker {
     processResults(timestamp, results, frame);
   }
 
-  public synchronized void draw(final Canvas canvas) {
+  public synchronized void draw(final Canvas canvas) throws IOException {
     // TODO(andrewharp): This may not work for non-90 deg rotations.
     final float multiplier =
         Math.min(canvas.getWidth() / (float) frameHeight, canvas.getHeight() / (float) frameWidth);
@@ -182,14 +195,50 @@ public class MultiBoxTracker {
       boxPaint.setColor(recognition.color);
 
       final float cornerSize = Math.min(trackedPos.width(), trackedPos.height()) / 8.0f;
-      canvas.drawRoundRect(trackedPos, cornerSize, cornerSize, boxPaint);
+      //canvas.drawRoundRect(trackedPos, cornerSize, cornerSize, boxPaint);
 
       final String labelString =
           !TextUtils.isEmpty(recognition.title)
               ? String.format("%s %.2f", recognition.title, recognition.detectionConfidence)
               : String.format("%.2f", recognition.detectionConfidence);
-      borderedText.drawText(canvas, trackedPos.left + cornerSize, trackedPos.bottom, labelString);
+     // 77borderedText.drawText(canvas, trackedPos.left + cornerSize, trackedPos.bottom, "BMW"+labelString);
+        if(recognition.title.toString().equals("laptop")) {
+        System.out.println("HEHEHEH"+ recognition.title.toString());
+            //borderedText.drawText(canvas, trackedPos.left + cornerSize, trackedPos.bottom, labelString);
+            //canvas.drawRoundRect(trackedPos, cornerSize, cornerSize, boxPaint);
+          canvas.drawLine(trackedPos.centerX()-120,trackedPos.centerY()+110,trackedPos.centerX()+310,trackedPos.centerY()-180, paint);
+          canvas.drawLine(trackedPos.centerX()-120,trackedPos.centerY()+110,trackedPos.centerX()+50,trackedPos.centerY()+430, paint);
+          canvas.drawLine(trackedPos.centerX()-120,trackedPos.centerY()+110,trackedPos.centerX()-540,trackedPos.centerY()+310, paint);
+          canvas.drawLine(trackedPos.centerX()-120,trackedPos.centerY()+110,trackedPos.centerX()-240,trackedPos.centerY()-280, paint);
+
+
+
+          InputStream ims = context.getAssets().open("apple.png");
+            // load image as Drawable
+            Bitmap image = BitmapFactory.decodeStream(ims);
+            canvas.drawBitmap(image, trackedPos.centerX()-260, trackedPos.centerY()+100, null);
+
+          InputStream immercedes = context.getAssets().open("mercedes.png");
+          // load image as Drawable
+          Bitmap image2 = BitmapFactory.decodeStream(immercedes);
+          canvas.drawBitmap(image2, trackedPos.centerX()+260, trackedPos.centerY()-200, null);
+          canvas.drawBitmap(image2, trackedPos.centerX()+60, trackedPos.centerY()+450, null);
+          InputStream imvw = context.getAssets().open("vw.png");
+          // load image as Drawable
+          Bitmap image3 = BitmapFactory.decodeStream(imvw);
+          canvas.drawBitmap(image3, trackedPos.centerX()-560, trackedPos.centerY()+300, null);
+
+          canvas.drawBitmap(image3, trackedPos.centerX()-260, trackedPos.centerY()-300, null);
+            //imageButtonCanvas.drawImage(canvas, trackedPos.left + cornerSize, trackedPos.bottom);
+        }
+      this.detection = recognition.title.toString();
     }
+  }
+
+  String detection = "";
+
+  public String getLastDetection(){
+    return detection;
   }
 
   private boolean initialized = false;

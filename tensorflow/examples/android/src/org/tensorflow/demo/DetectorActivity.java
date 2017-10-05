@@ -192,8 +192,9 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
     trackingOverlay.addCallback(
         new DrawCallback() {
           @Override
-          public void drawCallback(final Canvas canvas) {
+          public void drawCallback(final Canvas canvas) throws IOException {
             tracker.draw(canvas);
+            setDetection(tracker.getLastDetection());
             if (isDebug()) {
               tracker.drawDebug(canvas);
             }
@@ -297,7 +298,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
             final Paint paint = new Paint();
             paint.setColor(Color.RED);
             paint.setStyle(Style.STROKE);
-            paint.setStrokeWidth(2.0f);
+            paint.setStrokeWidth(10.0f);
 
             float minimumConfidence = MINIMUM_CONFIDENCE_TF_OD_API;
             switch (MODE) {
