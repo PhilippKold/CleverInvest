@@ -1,10 +1,13 @@
 package org.tensorflow.demo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,6 +30,29 @@ public class GammelGeldActivity extends AppCompatActivity {
 
     private ValueShape shape = ValueShape.CIRCLE;
 
+    public static Intent createIntent(Context context) {
+        return new Intent(context, GammelGeldActivity.class);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String result = data.getExtras().getString("lastDetection");
+        Log.d("TEST", "Test: " + result);
+        // Check which request we're responding to
+        if (requestCode == 1) {
+
+            LinearLayout apple = (LinearLayout) findViewById(R.id.apple);
+            LinearLayout anheuser = (LinearLayout) findViewById(R.id.anheuser);
+
+
+            if (result != null && (result.equals("laptop"))) {
+                apple.setVisibility(View.VISIBLE);
+            } else if (result != null && (result.equals("bottle"))) {
+                anheuser.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +60,11 @@ public class GammelGeldActivity extends AppCompatActivity {
 
         chart = (LineChartView) findViewById(R.id.chart);
 
+        LinearLayout apple = (LinearLayout) findViewById(R.id.apple);
+        LinearLayout anheuser = (LinearLayout) findViewById(R.id.anheuser);
+
+        apple.setVisibility(View.GONE);
+        anheuser.setVisibility(View.GONE);
         generateValues();
 
         generateData();
@@ -221,7 +252,7 @@ public class GammelGeldActivity extends AppCompatActivity {
 
     public void startScan(View view) {
         Intent intent = new Intent(this, DetectorActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
     public void startInfo(View view) {
