@@ -209,33 +209,39 @@ public class MultiBoxTracker {
             canvas.drawRoundRect(trackedPos, cornerSize, cornerSize, boxPaint);
 
             if (recognition.title.toString().equals("laptop") || recognition.title.toString().equals("cell phone")) {
-                canvas.drawLine(trackedPos.centerX() - 120, trackedPos.centerY() + 110, trackedPos.centerX() + 310, trackedPos.centerY() - 180, paint);
-                canvas.drawLine(trackedPos.centerX() - 120, trackedPos.centerY() + 110, trackedPos.centerX() + 50, trackedPos.centerY() + 430, paint);
-                canvas.drawLine(trackedPos.centerX() - 120, trackedPos.centerY() + 110, trackedPos.centerX() - 540, trackedPos.centerY() + 310, paint);
-                canvas.drawLine(trackedPos.centerX() - 120, trackedPos.centerY() + 110, trackedPos.centerX() - 240, trackedPos.centerY() - 280, paint);
-                InputStream ims = context.getAssets().open("apple.png");
-                // load image as Drawable
-                Bitmap image = BitmapFactory.decodeStream(ims);
-                canvas.drawBitmap(image, trackedPos.centerX() - 260, trackedPos.centerY() + 100, null);
-
-                InputStream immercedes = context.getAssets().open("mercedes.png");
-                // load image as Drawable
-                Bitmap image2 = BitmapFactory.decodeStream(immercedes);
-                canvas.drawBitmap(image2, trackedPos.centerX() + 260, trackedPos.centerY() - 200, null);
-                canvas.drawBitmap(image2, trackedPos.centerX() + 60, trackedPos.centerY() + 450, null);
-                InputStream imvw = context.getAssets().open("vw.png");
-                // load image as Drawable
-                Bitmap image3 = BitmapFactory.decodeStream(imvw);
-                canvas.drawBitmap(image3, trackedPos.centerX() - 560, trackedPos.centerY() + 300, null);
-
-                canvas.drawBitmap(image3, trackedPos.centerX() - 260, trackedPos.centerY() - 300, null);
+//                canvas.drawLine(trackedPos.centerX() - 120, trackedPos.centerY() + 110, trackedPos.centerX() + 310, trackedPos.centerY() - 180, paint);
+//                canvas.drawLine(trackedPos.centerX() - 120, trackedPos.centerY() + 110, trackedPos.centerX() + 50, trackedPos.centerY() + 430, paint);
+//                canvas.drawLine(trackedPos.centerX() - 120, trackedPos.centerY() + 110, trackedPos.centerX() - 540, trackedPos.centerY() + 310, paint);
+//                canvas.drawLine(trackedPos.centerX() - 120, trackedPos.centerY() + 110, trackedPos.centerX() - 240, trackedPos.centerY() - 280, paint);
+//                InputStream ims = context.getAssets().open("apple.png");
+//                // load image as Drawable
+//                Bitmap image = BitmapFactory.decodeStream(ims);
+//                canvas.drawBitmap(image, trackedPos.centerX() - 260, trackedPos.centerY() + 100, null);
+//
+//                InputStream immercedes = context.getAssets().open("mercedes.png");
+//                // load image as Drawable
+//                Bitmap image2 = BitmapFactory.decodeStream(immercedes);
+//                canvas.drawBitmap(image2, trackedPos.centerX() + 260, trackedPos.centerY() - 200, null);
+//                canvas.drawBitmap(image2, trackedPos.centerX() + 60, trackedPos.centerY() + 450, null);
+//                InputStream imvw = context.getAssets().open("vw.png");
+//                // load image as Drawable
+//                Bitmap image3 = BitmapFactory.decodeStream(imvw);
+//                canvas.drawBitmap(image3, trackedPos.centerX() - 560, trackedPos.centerY() + 300, null);
+//
+//                canvas.drawBitmap(image3, trackedPos.centerX() - 260, trackedPos.centerY() - 300, null);
                 //imageButtonCanvas.drawImage(canvas, trackedPos.left + cornerSize, trackedPos.bottom);
+                InputStream ims = context.getAssets().open("apple2nd.png");
+//                // load image as Drawable
+               Bitmap image = BitmapFactory.decodeStream(ims);
+                canvas.drawBitmap(image, trackedPos.centerX() - 260, trackedPos.centerY() + 100, null);
             }
 
             if (recognition.title.toString().equals("bottle")) {
                 //TODO BIld
-                Toast.makeText(context, "Bottle - Bild kommt bald", Toast.LENGTH_SHORT);
-
+                InputStream ims = context.getAssets().open("becksfull.png");
+//                // load image as Drawable
+                Bitmap image = BitmapFactory.decodeStream(ims);
+                canvas.drawBitmap(image, trackedPos.centerX() - 260, trackedPos.centerY() + 100, null);
             }
             this.detection = recognition.title.toString();
         }
