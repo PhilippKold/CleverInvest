@@ -17,4 +17,5 @@
     <string name="description_info">Info</string>
     <string name="request_permission">This sample needs camera permission.</string>
     <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+    <string name="you_could_have">You could have %1$s, if you invested in securities</string>
 </resources>
