@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    android:layout_marginEnd="10dp"
-    tools:context="com.example.dima.cleverinvest.InfoActivity">
+    android:layout_marginEnd="10dp">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -19,10 +18,11 @@
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
-            android:layout_height="74dp"
+            android:layout_height="wrap_content"
             android:textSize="26sp"
             android:textColor="@color/dark"
-            android:text="How to calculate your lazy money?" />
+            android:layout_gravity="center"
+            android:text="Adjust your Lazy Money" />
 
         <Space
             android:layout_width="match_parent"
@@ -205,9 +205,12 @@
             android:layout_height="wrap_content"
             android:onClick="goBack"
             android:text="Ok!"
-            android:background="@color/comdirect_bottom_line_color_3"
-            tools:layout_editor_absoluteX="138dp"
-            tools:layout_editor_absoluteY="267dp" />
+            android:background="@color/comdirect_bottom_line_color_3"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="More Info"/>
 
     </LinearLayout>
 

@@ -109,10 +109,11 @@
                                 android:textSize="12sp" />
                         </LinearLayout>
 
-                        <ImageButton
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="@color/orange"
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="BUY"
+                            android:background="@color/bright_yellow"
                             android:scaleType="fitCenter"
                             android:src="@drawable/chart2" />
                     </LinearLayout>
@@ -154,13 +155,21 @@
                             android:textSize="12sp" />
                     </LinearLayout>
 
-                    <ImageButton
-                        android:layout_width="40dp"
+                    <Button
+                        android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:background="@color/orange"
+                        android:background="@color/bright_yellow"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/chart2" />
+                        android:text="BUY"/>
                 </LinearLayout>
+
+                <Button
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bright_yellow"
+                    android:text="more"/>
             </LinearLayout>
 
             <TextView
@@ -229,13 +238,21 @@
                                 android:textSize="12sp" />
                         </LinearLayout>
 
-                        <ImageButton
-                            android:layout_width="40dp"
+                        <Button
+                            android:layout_width="wrap_content"
                             android:layout_height="40dp"
-                            android:background="@color/orange"
+                            android:background="@color/bright_yellow"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/chart2" />
+                            android:text="BUY" />
                     </LinearLayout>
+
+                    <Button
+                        android:layout_marginRight="10dp"
+                        android:layout_gravity="right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/bright_yellow"
+                        android:text="more"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -273,13 +290,22 @@
                             android:textSize="12sp" />
                     </LinearLayout>
 
-                    <ImageButton
-                        android:layout_width="40dp"
+                    <Button
+                        android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:background="@color/orange"
+                        android:background="@color/bright_yellow"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/chart2" />
+                        android:text="BUY" />
                 </LinearLayout>
+                <Button
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/bright_yellow"
+                    android:text="more"
+                    android:layout_marginBottom="10dp"/>
+
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
