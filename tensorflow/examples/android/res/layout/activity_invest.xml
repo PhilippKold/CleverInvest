@@ -163,13 +163,14 @@
                         android:text="BUY"/>
                 </LinearLayout>
 
-                <Button
-                    android:layout_marginRight="10dp"
-                    android:layout_gravity="right"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/bright_yellow"
-                    android:text="more"/>
+                    android:text="More..."
+                    android:layout_marginLeft="12dp"
+                    android:textColor="@color/dark"
+                    android:textSize="13sp"
+                    android:layout_gravity="left"/>
             </LinearLayout>
 
             <TextView
@@ -179,6 +180,7 @@
                 android:layout_below="@id/topMuster1"
                 android:gravity="center"
                 android:padding="5dp"
+                android:layout_marginTop="20dp"
                 android:text="Real portfolio"
                 android:textColor="@color/dark"
                 android:textSize="20sp" />
@@ -246,13 +248,14 @@
                             android:text="BUY" />
                     </LinearLayout>
 
-                    <Button
-                        android:layout_marginRight="10dp"
-                        android:layout_gravity="right"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/bright_yellow"
-                        android:text="more"/>
+                        android:text="More..."
+                        android:textColor="@color/dark"
+                        android:layout_marginLeft="12dp"
+                        android:textSize="13sp"
+                        android:layout_gravity="left"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -297,14 +300,15 @@
                         android:scaleType="fitCenter"
                         android:text="BUY" />
                 </LinearLayout>
-                <Button
-                    android:layout_marginRight="10dp"
-                    android:layout_gravity="right"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/bright_yellow"
-                    android:text="more"
-                    android:layout_marginBottom="10dp"/>
+                    android:text="More..."
+                    android:textColor="@color/dark"
+                    android:textSize="13sp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="left"/>
 
             </LinearLayout>
         </RelativeLayout>
