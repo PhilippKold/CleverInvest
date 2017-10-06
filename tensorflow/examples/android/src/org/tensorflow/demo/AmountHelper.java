@@ -18,6 +18,8 @@ public class AmountHelper {
     private double[] fixCost = {1300,1300,1300};
     private double[] other = {1000,900,700};
 
+    public boolean bottleScaned = false;
+
     private double reserve = 0;
 
     public double getReserve() {

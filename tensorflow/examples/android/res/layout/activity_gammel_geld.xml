@@ -99,6 +99,16 @@
                         android:text="@string/you_could_have"
                         android:textColor="@color/red"
                         android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/labelDepot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="Simulated portfolio"
+                        android:textColor="@color/dark"
+                        android:textSize="20sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -150,10 +160,11 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/percentageApple"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingEnd="5dp"
-                                android:text="30%"
+                                android:text="20%"
                                 android:textColor="@color/dark"
                                 android:textSize="14sp" />
 
@@ -216,10 +227,11 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/percentageBMW"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingEnd="5dp"
-                                android:text="25%"
+                                android:text="30%"
                                 android:textColor="@color/dark"
                                 android:textSize="14sp" />
 
@@ -283,10 +295,12 @@
                             android:orientation="horizontal">
 
                             <TextView
+
+                                android:id="@+id/percentageInBev"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingEnd="5dp"
-                                android:text="5%"
+                                android:text="15%"
                                 android:textColor="@color/dark"
                                 android:textSize="14sp" />
 
@@ -348,10 +362,11 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/percentageAdidas"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingEnd="5dp"
-                                android:text="40%"
+                                android:text="35%"
                                 android:textColor="@color/dark"
                                 android:textSize="14sp" />
 

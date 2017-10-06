@@ -36,19 +36,26 @@ public class GammelGeldActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         // Check which request we're responding to
         if (requestCode == 1 && resultCode == 1) {
             String result = data.getExtras().getString("lastDetection");
-            Log.d("TEST", "Test: " + result);
-            LinearLayout apple = (LinearLayout) findViewById(R.id.apple);
-            LinearLayout anheuser = (LinearLayout) findViewById(R.id.anheuser);
 
+            if (result != null && result.equals("bottle")) {
 
-            if (result != null && (result.equals("laptop"))) {
-                apple.setVisibility(View.VISIBLE);
-            } else if (result != null && (result.equals("bottle"))) {
+                AmountHelper.getInstance().bottleScaned = true;
+
+                LinearLayout anheuser = (LinearLayout) findViewById(R.id.anheuser);
+                TextView percentageBMW = (TextView) findViewById(R.id.percentageBMW);
+                TextView percentageAdidas = (TextView) findViewById(R.id.percentageAdidas);
+                TextView percentageApple = (TextView) findViewById(R.id.percentageApple);
+                TextView percentageInBev = (TextView) findViewById(R.id.percentageInBev);
+
                 anheuser.setVisibility(View.VISIBLE);
+
+                percentageApple.setText("20%");
+                percentageAdidas.setText("35%");
+                percentageBMW.setText("30%");
+                percentageInBev.setText("15%");
             }
         }
     }
@@ -60,11 +67,18 @@ public class GammelGeldActivity extends AppCompatActivity {
 
         chart = (LineChartView) findViewById(R.id.chart);
 
-        LinearLayout apple = (LinearLayout) findViewById(R.id.apple);
         LinearLayout anheuser = (LinearLayout) findViewById(R.id.anheuser);
+        TextView percentageBMW = (TextView) findViewById(R.id.percentageBMW);
+        TextView percentageAdidas = (TextView) findViewById(R.id.percentageAdidas);
+        TextView percentageApple = (TextView) findViewById(R.id.percentageApple);
+        TextView percentageInBev = (TextView) findViewById(R.id.percentageInBev);
 
-        apple.setVisibility(View.GONE);
-        anheuser.setVisibility(View.GONE);
+        if (!AmountHelper.getInstance().bottleScaned) {
+            anheuser.setVisibility(View.GONE);
+            percentageApple.setText("25%");
+            percentageAdidas.setText("40%");
+            percentageBMW.setText("35%");
+        }
         generateValues();
 
         generateData();
